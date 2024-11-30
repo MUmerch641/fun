@@ -3,66 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Love Game</title>
+    <style>
+        /* Reset and Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #Heading {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        #btn {
+            background: #ff6f61;
+            color: white;
+        }
+
+        #btnNo {
+            background: #61a0ff;
+            color: white;
+            display: none; /* Initially hidden */
+        }
+
+        /* Hover Effects */
+        button:hover {
+            transform: scale(1.1);
+            background-color: #ff8a5b;
+        }
+
+        #btnNo:hover {
+            background-color: #6fa8dc;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-10px);
+            }
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        /* Animated heading when clicked */
+        #Heading.animated {
+            animation: shake 0.5s ease-in-out;
+        }
+    </style>
 </head>
-<body style="position: absolute;">
+<body>
     <div class="container">
         <h1 id="Heading">I love you so much!</h1>
         <button id="btn">ok, so what?</button>
-        <button id="btnNo" style="display: none;">No!</button>
+        <button id="btnNo">No!</button>
     </div>
 
     <script>
-        let container = document.querySelector('container');
-        let h1 =  document.querySelector('#Heading');
+        let container = document.querySelector('.container');
+        let h1 = document.querySelector('#Heading');
         let btn = document.querySelector('#btn');
-        let btnNo = document.querySelector('#btnNo')
+        let btnNo = document.querySelector('#btnNo');
 
-        let c=0;
-        btn.addEventListener('click',()=>{
-            if(c==0){
-                h1.innerText = ' I want to spend life with you'
+        let c = 0;
+        btn.addEventListener('click', () => {
+            h1.classList.add('animated'); // Add animation
+            setTimeout(() => h1.classList.remove('animated'), 500); // Remove after animation
+
+            if (c == 0) {
+                h1.innerText = ' I want to spend life with you';
                 btn.innerText = 'so??';
-                c++
-            }
-            else if(c==1){
-                h1.innerText = ' I will give you my whole life!'
-                btn.innerText = 'I am bored come to point';
-                c++
-            }
-            else if(c==2){
-                h1.innerText = ' Do you love me!'
+                c++;
+            } else if (c == 1) {
+                h1.innerText = ' I will give you my whole life!';
+                btn.innerText = 'I am bored, come to point';
+                c++;
+            } else if (c == 2) {
+                h1.innerText = ' Do you love me!';
                 btn.innerText = 'yes';
                 btnNo.style.display = 'inline-block';
-                c++
-            }
-            else if(c==3 && btn.innerText == 'yes'){
+                c++;
+            } else if (c == 3 && btn.innerText == 'yes') {
                 h1.innerText = 'Thanks!';
-                c++
-                btn.style.display='none';
-                btnNo.style.display= 'none'
+                c++;
+                btn.style.display = 'none';
+                btnNo.style.display = 'none';
             }
+        });
 
-        })
+        btnNo.addEventListener('mouseover', () => {
+            let randomX = Math.floor(Math.random() * window.innerWidth) - 50;
+            let randomY = Math.floor(Math.random() * window.innerHeight) - 50;
 
-        btnNo.addEventListener('mouseover', ()=>{
-           let allInOne = Math.floor(Math.random() * 1000) + 1;
-          let top=  Math.floor(Math.random() * 500) + 1;
-            btnNo.style.position= 'relative';
-            btnNo.style.left=`${allInOne}px`
-            btnNo.style.right=`${allInOne}px`
-            btnNo.style.top=`${top}px`
-            btnNo.style.bottom=`${top}px`
-        })
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = `${randomX}px`;
+            btnNo.style.top = `${randomY}px`;
+        });
 
-        btnNo.addEventListener('click', ()=>{
-            let allInOne = Math.floor(Math.random() * window.innerWidth) + 1;
-            btnNo.style.position= 'relative';
-            btnNo.style.left=`${allInOne}px`
-            btnNo.style.right=`${allInOne}px`
-            btnNo.style.top=`${allInOne}px`
-            btnNo.style.bottom=`${allInOne}px`
-        })
+        btnNo.addEventListener('click', () => {
+            let randomX = Math.floor(Math.random() * window.innerWidth) - 50;
+            let randomY = Math.floor(Math.random() * window.innerHeight) - 50;
+
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = `${randomX}px`;
+            btnNo.style.top = `${randomY}px`;
+        });
     </script>
 </body>
 </html>
