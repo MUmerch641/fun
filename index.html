@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="position: absolute;">
+    <div class="container">
+        <h1 id="Heading">I love you so much!</h1>
+        <button id="btn">ok, so what?</button>
+        <button id="btnNo" style="display: none;">No!</button>
+    </div>
+
+    <script>
+        let container = document.querySelector('container');
+        let h1 =  document.querySelector('#Heading');
+        let btn = document.querySelector('#btn');
+        let btnNo = document.querySelector('#btnNo')
+
+        let c=0;
+        btn.addEventListener('click',()=>{
+            if(c==0){
+                h1.innerText = ' I want to spend life with you'
+                btn.innerText = 'so??';
+                c++
+            }
+            else if(c==1){
+                h1.innerText = ' I will give you my whole life!'
+                btn.innerText = 'I am bored come to point';
+                c++
+            }
+            else if(c==2){
+                h1.innerText = ' Do you love me!'
+                btn.innerText = 'yes';
+                btnNo.style.display = 'inline-block';
+                c++
+            }
+            else if(c==3 && btn.innerText == 'yes'){
+                h1.innerText = 'Thanks!';
+                c++
+                btn.style.display='none';
+                btnNo.style.display= 'none'
+            }
+
+        })
+
+        btnNo.addEventListener('mouseover', ()=>{
+           let allInOne = Math.floor(Math.random() * 1000) + 1;
+          let top=  Math.floor(Math.random() * 500) + 1;
+            btnNo.style.position= 'relative';
+            btnNo.style.left=`${allInOne}px`
+            btnNo.style.right=`${allInOne}px`
+            btnNo.style.top=`${top}px`
+            btnNo.style.bottom=`${top}px`
+        })
+
+        btnNo.addEventListener('click', ()=>{
+            let allInOne = Math.floor(Math.random() * window.innerWidth) + 1;
+            btnNo.style.position= 'relative';
+            btnNo.style.left=`${allInOne}px`
+            btnNo.style.right=`${allInOne}px`
+            btnNo.style.top=`${allInOne}px`
+            btnNo.style.bottom=`${allInOne}px`
+        })
+    </script>
+</body>
+</html>
